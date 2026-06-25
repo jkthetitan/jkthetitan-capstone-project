@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="content" class="p-3">
+        <h3 class="mt-4 mb-4" th:text="${title}"> My Books </h3>
+        <div th:if="${#lists.isEmpty(books)}"
+             class="alert alert-info">
+            No books found.
+        </div>
+        <div th:unless="${#lists.isEmpty(books)}">
+            <div th:each="book : ${books}">
+                <div th:if="${book != null}">
+                    <div th:replace="~{fragments/book-card :: bookCard(${book})}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
